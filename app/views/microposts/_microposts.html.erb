@@ -4,7 +4,7 @@
       <img class="mr-2 rounded" src="<%= gravatar_url(micropost.user, {size:50}) %>" alt="">
       <div class="media-body">
         <div>
-          <%= link_to micropost.user.name, user_path(micropost.user) %> <span class="text-muted">posted at <%= micropost.created_at %></span>
+          <%= link_to micropost.user.name, user_path(micropost.user) %> <span class="text-muted">posted at <%= micropost.created_at.in_time_zone('Tokyo') %> (<%= distance_of_time_in_words_to_now(micropost.created_at) %> ago)</span>
         </div>
         <div>
           <%= simple_format h micropost.content %>
