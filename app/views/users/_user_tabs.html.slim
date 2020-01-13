@@ -1,0 +1,17 @@
+ul.nav.nav-tabs.nav-justified.mb-3
+  li.nav-item
+    a href="#{user_path(user)}" class="nav-link #{'active' if current_page?(user_path(user))}"
+      | Microposts
+      span.badge.badge-secondary.ml-2 = @count_microposts
+  li.nav-item
+    a href="#{followings_user_path(user)}" class="nav-link #{'active' if current_page?(followings_user_path(user))}"
+      | Followings
+      span.badge.badge-secondary.ml-2 = @count_followings
+  li.nav-item
+    a href="#{followers_user_path(user)}" class="nav-link #{'active' if current_page?(followers_user_path(user))}"
+      | Followers
+      span.badge.badge-secondary.ml-2 = @count_followers
+  li.nav-item
+    a href="#{likes_user_path(user)}" class="nav-link #{'active' if current_page?(likes_user_path(user))}"
+      | Likes
+      span.badge.badge-secondary.ml-2 = @count_favorites

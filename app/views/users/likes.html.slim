@@ -1,0 +1,7 @@
+.row
+  aside.col-sm-4
+    == render 'user_card', user: @user
+    == render 'relationships/follow_button', user: @user
+  .col-sm-8
+    == render 'user_tabs', user: @user
+    == render 'microposts/microposts', microposts: @favorites

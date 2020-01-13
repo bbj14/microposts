@@ -1,0 +1,21 @@
+ul.list-unstyled
+  - microposts.each do |micropost|
+    li.media.mb-3.p-3.border.rounded.shadow-sm
+      img.mr-3.rounded src="#{gravatar_url(micropost.user, {size:50})}" alt=""
+      .media-body
+        div
+          = link_to micropost.user.name, user_path(micropost.user)
+          span.text-muted.ml-2
+            | posted at 
+            = micropost.created_at.in_time_zone('Tokyo')
+            |  (
+            = distance_of_time_in_words_to_now(micropost.created_at)
+            |  ago)
+        div
+          = simple_format h micropost.content
+        .mr-3.d-inline-block
+          = render 'favorites/favorite_button', micropost: micropost
+        .d-inline-block
+          - if current_user == micropost.user
+            = link_to 'Delete', micropost, method: :delete, data: {confirm: 'You sure?'}, class: 'btn btn-danger btn-sm'
+  = paginate microposts

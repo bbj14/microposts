@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   end
   
   
-  resources :microposts, only: [:create, :destroy]
+  resources :microposts, only: [:create, :edit, :update, :destroy]
   get 'microposts', to: 'toppages#index'
   
   resources :relationships, only: [:create, :destroy]
