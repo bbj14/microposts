@@ -17,5 +17,6 @@ ul.list-unstyled
           = render 'favorites/favorite_button', micropost: micropost
         .d-inline-block
           - if current_user == micropost.user
+            = link_to 'Edit', edit_micropost_path(micropost), class: 'btn btn-success btn-sm mr-2'
             = link_to 'Delete', micropost, method: :delete, data: {confirm: 'You sure?'}, class: 'btn btn-danger btn-sm'
   = paginate microposts

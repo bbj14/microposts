@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :required_user_logged_in, only: [:index, :show, :followings, :followers]
-  before_action :set_user, only: [:show, :followings, :followers, :likes]
+  before_action :required_user_logged_in, except: [:new, :create]
+  before_action :set_correct_user, only: [:show, :edit, :followings, :followers, :likes]
   
   def index
     @users = User.order(id: :desc).page(params[:page]).per(25)
@@ -27,6 +27,18 @@ class UsersController < ApplicationController
     end
   end
   
+  def edit
+    
+  end
+  
+  def update
+    
+  end
+  
+  def destroy
+    
+  end
+  
   def followings
     @followings = @user.followings.page(params[:page])
     count(@user)
@@ -44,8 +56,11 @@ class UsersController < ApplicationController
   
   private
   
-  def set_user
-    @user = User.find(params[:id])
+  def set_correct_user
+    @user = User.find_by(id: params[:id])
+    unless @user
+      redirect_to root_url
+    end
   end
   
   def user_params

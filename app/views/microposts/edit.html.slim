@@ -1,1 +1,8 @@
-
+.row
+  .col-sm-6.offset-sm-3
+    h3 Edit micropost
+    = form_with(model: @micropost, local: true) do |f|
+      == render 'layouts/error_messages', model: f.object
+      .form-group
+        = f.text_area :content, class: 'form-control', rows: 5
+      = f.submit 'Post', class: 'btn btn-primary btn-block'

@@ -19,6 +19,8 @@ header.mb-4
                 = link_to 'My Likes', likes_user_path(current_user)
               li.dropdown-divider
               li.dropdown-item
+                = link_to 'Edit profile', edit_user_path(current_user)
+              li.dropdown-item
                 = link_to 'Logout', logout_path, method: :delete
         - else
           li.nav-item
