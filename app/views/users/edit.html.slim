@@ -1,0 +1,18 @@
+.row
+  .col-md-6.offset-md-3
+    h3.mb-4 Edit profile
+    = form_with(model: @user, local: true) do |f|
+      = render 'layouts/error_messages', model: f.object
+      .form-group
+        = f.label :name, 'Name'
+        = f.text_field :name, class: 'form-control'
+      .form-group
+        = f.label :email, 'Email'
+        = f.text_field :email, class: 'form-control'
+      .form-group
+        = f.label :birthday, 'Birthday'
+        p.form-inline = f.date_select :birthday, {prompt: '---', use_month_numbers: true, start_year: Time.now.year, end_year: 1900, date_separator: '/'}, {:class => "form-control mx-2", :style => "width: 83px"}
+      .form-group
+        = f.label :biography, 'Biography'
+        = f.text_area :biography, class: 'form-control', rows: 5, maxlength: 255
+      = f.submit 'Save', class: 'btn btn-primary btn-block'
