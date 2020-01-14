@@ -3,7 +3,10 @@
     h3.card-title
       = user.name
   .card-body
-    img.rounded.img-fluid.mb-3 src="#{gravatar_url(user, {size: 500})}" alt=""
+    - if user.image?
+      = image_tag user.image.url, class: "img-fluid"
+    - else
+      img.rounded.img-fluid.mb-3 src="#{gravatar_url(user, {size: 500})}" alt=""
     p
       = "Birthday ： #{user.birthday}" if user.birthday
     = user.biography

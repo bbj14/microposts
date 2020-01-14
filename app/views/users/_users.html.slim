@@ -2,8 +2,11 @@
   ul.list-unstyled
     - users.each do |user|
       li.media.mb-3
-        img.mr-2.rounded src="#{gravatar_url(user, {size: 50})}" alt=""
-        .media-body
+        - if user.image?
+          = image_tag user.image.url, size: "50x50"
+        - else
+          img.rounded src="#{gravatar_url(user, {size: 50})}" alt=""
+        .media-body.ml-2
           div
             = user.name
           div

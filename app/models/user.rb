@@ -1,3 +1,4 @@
+
 class User < ApplicationRecord
   before_save { self.email.downcase! }
   validates :name, presence: true, length: { maximum: 50 }
@@ -27,6 +28,8 @@ class User < ApplicationRecord
     User.joins(:relationships).where('relationships.follow_id = ?',  current_user.id)
   end
 =end
+  
+  mount_uploader :image, ImageUploader
 
   def follow(other_user)
     unless self == other_user

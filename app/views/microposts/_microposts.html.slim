@@ -1,8 +1,11 @@
 ul.list-unstyled
   - microposts.each do |micropost|
     li.media.mb-3.p-3.border.rounded.shadow-sm
-      img.mr-3.rounded src="#{gravatar_url(micropost.user, {size:50})}" alt=""
-      .media-body
+      - if micropost.user.image?
+        = image_tag micropost.user.image.url, size: "50x50"
+      - else
+        img.rounded src="#{gravatar_url(micropost.user, {size: 50})}" alt=""
+      .media-body.ml-3
         div
           = link_to micropost.user.name, user_path(micropost.user)
           span.text-muted.ml-2
