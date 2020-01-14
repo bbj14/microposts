@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :required_user_logged_in, except: [:new, :create]
-  before_action :set_correct_user, only: [:show, :edit, :update, :followings, :followers, :likes]
+  before_action :set_correct_user, only: [:show, :edit, :update, :destroy, :followings, :followers, :likes]
   
   def index
     @users = User.order(id: :desc).page(params[:page]).per(25)
@@ -42,7 +42,10 @@ class UsersController < ApplicationController
   end
   
   def destroy
-    
+    @user.destroy!
+    #session[:user_id] = nil
+    flash[:success] = "退会しました"
+    redirect_to root_url
   end
   
   def followings
