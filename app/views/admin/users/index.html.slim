@@ -1,0 +1,28 @@
+- if @users.any?
+  table.table.table-striped
+    thead
+      th id
+      th name
+      th image
+      th admin
+      th can_login
+      th can_post
+      th can_follow
+      th 
+    tbody
+      - @users.each do |user|
+        tr 
+          td.align-middle = user.id
+          td.align-middle = link_to user.name, user
+          td.align-middle
+            - if user.image?
+              = image_tag user.image.url, size: "50x50"
+            - else
+              img.rounded src="#{gravatar_url(user, {size: 50})}" alt=""
+          td.align-middle = user.admin
+          td.align-middle = user.can_login
+          td.align-middle = user.can_post
+          td.align-middle = user.can_follow
+          td.align-middle
+            = link_to 'Delete user', user, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger"
+  = paginate @users

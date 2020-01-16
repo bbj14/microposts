@@ -22,4 +22,8 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   
   resources :favorites, only: [:create, :destroy]
+  
+  namespace :admin do
+    get 'users/index', to: 'users#index'
+  end
 end

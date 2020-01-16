@@ -1,6 +1,7 @@
 class MicropostsController < ApplicationController
   before_action :required_user_logged_in
   before_action :set_correct_user, only: [:edit, :update, :destroy]
+  before_action :required_user_post, only: [:create]
 
   def create
     @micropost = current_user.microposts.build(microposts_params)
@@ -45,5 +46,11 @@ class MicropostsController < ApplicationController
       redirect_to root_url
     end
   end
-
+  
+  def required_user_post
+    unless current_user.can_post
+      flash[:danger] = "post restricted"
+      redirect_back(fallback_location: root_path)
+    end
+  end
 end

@@ -44,8 +44,12 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy!
     #session[:user_id] = nil
-    flash[:success] = "退会しました"
-    redirect_to root_url
+    if current_user.admin
+      redirect_back(fallback_location: root_path)
+    else
+      flash[:success] = "退会しました"
+      redirect_to root_url
+    end
   end
   
   def followings

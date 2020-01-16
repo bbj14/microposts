@@ -7,6 +7,9 @@ header.mb-4
     #navbarSupportedContent.collapse.navbar-collapse.justify-content-end
       ul.navbar-nav
         - if logged_in?
+          - if current_user.admin
+            li.nav-item
+            = link_to 'Administration page', admin_users_index_path, class: 'nav-link'
           li.nav-item
             = link_to 'Users', users_path, class: 'nav-link'
           li.nav-item.dropdown

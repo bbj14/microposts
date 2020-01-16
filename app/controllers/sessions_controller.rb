@@ -6,8 +6,13 @@ class SessionsController < ApplicationController
     email = params[:session][:email].downcase
     password = params[:session][:password]
     if login(email, password)
-      flash[:success] = 'ログインに成功しました'
-      redirect_to @user
+      if @user.can_login
+        flash[:success] = 'ログインに成功しました'
+        redirect_to @user
+      else
+        flash[:danger] = "login restricted"
+        redirect_back(fallback_location: root_path)
+      end
     else
       flash.now[:danger] = 'ログインに失敗しました'
       render :new
