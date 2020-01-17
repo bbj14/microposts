@@ -20,10 +20,14 @@ h3.text-center.mb-3 User administration
               = image_tag user.image.url, size: "50x50"
             - else
               img.rounded src="#{gravatar_url(user, {size: 50})}" alt=""
-          td.align-middle = user.admin
-          td.align-middle = user.can_login
-          td.align-middle = user.can_post
-          td.align-middle = user.can_follow
+          td.align-middle id="admin-toggle-#{user.id}"
+            = render 'toggle_button', user: user, status: user.admin, column: 'admin'
+          td.align-middle id="login-toggle-#{user.id}"
+            = render 'toggle_button', user: user, status: user.can_login, column: 'can_login'
+          td.align-middle id="post-toggle-#{user.id}"
+            = render 'toggle_button', user: user, status: user.can_post, column: 'can_post'
+          td.align-middle id="follow-toggle-#{user.id}"
+            = render 'toggle_button', user: user, status: user.can_follow, column: 'can_follow'
           td.align-middle
-            = link_to 'Delete user', user, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger"
+            = link_to 'Delete user', user, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-warning"
   = paginate @users

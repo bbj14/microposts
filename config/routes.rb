@@ -25,5 +25,6 @@ Rails.application.routes.draw do
   
   namespace :admin do
     get 'users/index', to: 'users#index'
+    post 'users/:id', to: 'users#toggle'
   end
 end

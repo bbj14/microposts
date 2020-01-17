@@ -1,0 +1,18 @@
+- if status
+  | true
+  = form_with(url: admin_path(user), id: "toggle_form_#{column}_#{user.id}") do |f|
+    = hidden_field_tag column, false
+    .custom-control.custom-switch
+      input type="checkbox" class="custom-control-input" id="customSwitches_#{column}_#{user.id}" checked=(status)
+      label class="custom-control-label" for="customSwitches_#{column}_#{user.id}"
+- else
+  | false
+  = form_with(url: admin_path(user), id: "toggle_form_#{column}_#{user.id}") do |f|
+    = hidden_field_tag column, true
+    .custom-control.custom-switch
+      input type="checkbox" class="custom-control-input" id="customSwitches_#{column}_#{user.id}" checked=(status)
+      label class="custom-control-label" for="customSwitches_#{column}_#{user.id}"
+javascript:
+  $("#customSwitches_#{column}_#{user.id}").on("click", function (){
+    Rails.fire($("#toggle_form_#{column}_#{user.id}")[0], 'submit');
+  });

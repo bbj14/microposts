@@ -1,0 +1,4 @@
+| $("#admin-toggle-#{@user.id}").html("#{j(render 'toggle_button', user: @user, status: @user.admin, column: 'admin')}");
+| $("#login-toggle-#{@user.id}").html("#{j(render 'toggle_button', user: @user, status: @user.can_login, column: 'can_login')}");
+| $("#post-toggle-#{@user.id}").html("#{j(render 'toggle_button', user: @user, status: @user.can_post, column: 'can_post')}");
+| $("#follow-toggle-#{@user.id}").html("#{j(render 'toggle_button', user: @user, status: @user.can_follow, column: 'can_follow')}");
