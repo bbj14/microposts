@@ -76,3 +76,5 @@ group :development do
 end
 
 gem 'carrierwave'
+
+gem 'jquery-rails'

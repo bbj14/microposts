@@ -26,6 +26,11 @@ class User < ApplicationRecord
   def followers
     User.joins(:relationships).where('relationships.follow_id = ?',  current_user.id)
   end
+  CircleCI, GitHub Actions
+  CI, CD
+  rspec
+  Capistrano
+  Docker コンテナ
 =end
   
   mount_uploader :image, ImageUploader

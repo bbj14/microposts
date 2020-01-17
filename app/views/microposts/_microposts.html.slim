@@ -16,7 +16,7 @@ ul.list-unstyled
             |  ago)
         div
           = simple_format h micropost.content
-        .mr-3.d-inline-block
+        div.mr-3.d-inline-block id="fav-btn-#{micropost.id}"
           = render 'favorites/favorite_button', micropost: micropost
         .d-inline-block
           - if current_user == micropost.user

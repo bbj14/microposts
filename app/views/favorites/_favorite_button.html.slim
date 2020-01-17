@@ -1,12 +1,12 @@
 - if current_user.favorite?(micropost)
-  = form_with(model: current_user.favorites.find_by(micropost_id: micropost.id), local: true, method: :delete) do |f|
+  = form_with(model: current_user.favorites.find_by(micropost_id: micropost.id), method: :delete) do |f|
     = hidden_field_tag :micropost_id, micropost.id
     = button_tag type: "submit", class: "btn btn-dark" do
       i.fas.fa-star[style="color: yellow;"]
       small.ml-1
         = micropost.users_favorite_by.count
 - else
-  = form_with(model: current_user.favorites.build, local: true) do |f|
+  = form_with(model: current_user.favorites.build) do |f|
     = hidden_field_tag :micropost_id, micropost.id
     = button_tag type: "submit", class: "btn btn-dark" do
       i.fas.fa-star[style="color: white;"]
